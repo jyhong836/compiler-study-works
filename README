@@ -1,3 +1,16 @@
-# hello everybody
-This is my works
-test1
+my compiler principle homework
+1.
+中国科学技术大学编译原理与技术课程——词法分析上机实验
+
+实验目的：对循环语句和条件判断语句编写词法分析编译程序，只能通过一遍扫描完成。
+
+实验要求：
+(1)关键字：
+for    if    then  else  while    do
+所有关键字都是小写。
+(2）运算符和分隔符：
+  ：  =   +   -   *    /   <    >   <=   <>    >=    ;    (  )   #
+(3)其他标识符（ID）和整型常数（NUM），通过以下正规式定义：
+ID=letter(letter | digit)*
+NUM=digit digit*
+(4)空格由空白、制表符和换行符组成。空格一般用来分隔ID、NUM、运算符、分隔符和关键字，词法分析阶段通常被忽略。
