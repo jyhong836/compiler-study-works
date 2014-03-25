@@ -7,8 +7,6 @@
 // Coding	   : UTF-8
 // GitHub	   : https://github.com/jyhong836/
 // 功能		   : 词法分析，语法分析（递归下降方法）
-// compiler    : gcc-4.4
-// os          : ubuntu10.04
 //============================================================================
 
 #include <iostream>
@@ -20,7 +18,7 @@
 
 using namespace std;
 
-int wordscan(const char *);
+int wordscan();
 int lexfunc(LexScan *ls, int silent, const char *str, Word *w);
 int parsingfunc(Parsing *pars, int tkcur, Word *w, const char *str);
 
@@ -36,28 +34,12 @@ int len(const char *str) {
 }
 
 int main() {
-    cout << "Welcome to wordscan!\n  coding:utf-8\n" << endl; // prints Welcome!
-    cout << "+,*算术表达式语法分析器"<<endl;
-
-    char *str0="x  +  x( y*(z+x * h)+k)#";
-    char str[128] = {0};
-    cout<<"示例语句："<<str<<endl;
-    while(1)
-    {
-        cout<<"==========================================="<<endl;
-        cout<<"请输入要分析的句子,以#号结束,只输入#则使用默认的句子"<<endl;
-        cout<<"==========================================="<<endl;
-        scanf("%s", str);
-        int l = len(str);
-        if(!l||str[0]=='#'||str[l-1]!='#')
-            wordscan(str0);
-        else
-            wordscan(str);
-    }
+	wordscan();
 }
 
-int wordscan(const char *str)
+int wordscan()
 {
+	cout << "Welcome to wordscan!\n  coding:utf-8\n" << endl; // prints Welcome!
 	int silent = 1;
 	LexScan *ls=new LexScan(silent);
 	const int wordBuffNum = 128;
@@ -72,7 +54,7 @@ int wordscan(const char *str)
 		}
 		w[i].token = 0;
 	}
-	//const char *str="x:=5;  if (x>0)  then  x:=2*x+1/3;  else  x:=2/x;  #";
+	const char *str="x +^))y y*(z+x * h)#";//"x:=5;  if (x>0)  then  x:=2*x+1/3;  else  x:=2/x;  #";
 
 	// 词法分析器，返回的词法记号和单元保存在Word *w中
 	int tkcur = lexfunc(ls, silent, str, w);
@@ -133,7 +115,7 @@ int parsingfunc(Parsing *pars, int tkcur, Word *w, const char *str)
     pars->setStatement(w, tkcur); // 将词法记号流保存到parsing中
     pars->lookforward(); // 初始化lookahead
 
-    pars->S(); // 开始语法分析
+    pars->E(); // 开始语法分析
     tkcur = pars->isEnd();
     if (tkcur==0)
     {
@@ -143,17 +125,15 @@ int parsingfunc(Parsing *pars, int tkcur, Word *w, const char *str)
     else
     {
         cout<<"\nERROR:语法分析提前结束,结束位置"<<endl<<" ";
-        cout<<str<<"的第"<<(tkcur+1)<<"个词法单元：（"<<w[tkcur].token<<",";
+        cout<<str<<"的第"<<(tkcur+1)<<"词法单元：（"<<w[tkcur].token<<",";
         (w[tkcur].id[0]==0)?(cout<<w[tkcur].num):(cout<<w[tkcur].id);
         cout<<") "<<endl;
         int cur = w[tkcur].strCur;
         for (int i=0;i<cur;i++)
             putchar(' ');
         putchar('|');
-        cout<<endl;
         return -1;
     }
-    cout<<endl;
 
     return 0;
 }

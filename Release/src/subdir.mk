@@ -5,14 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/LexScan.cpp \
+../src/Parsing.cpp \
 ../src/wordscan.cpp 
 
 OBJS += \
 ./src/LexScan.o \
+./src/Parsing.o \
 ./src/wordscan.o 
 
 CPP_DEPS += \
 ./src/LexScan.d \
+./src/Parsing.d \
 ./src/wordscan.d 
 
 
