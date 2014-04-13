@@ -15,6 +15,7 @@
 #include "LexScan.h"
 #include "Parsing.h"
 #include "wordscan.h"
+#include "LR1Parse.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -36,10 +37,11 @@ int len(const char *str) {
 }
 
 int main() {
+#ifndef TEST
     cout << "Welcome to wordscan!\n  coding:utf-8\n" << endl; // prints Welcome!
-    cout << "+,*算术表达式语法分析器"<<endl;
+    cout << "+,-,*,/算术表达式语法分析器"<<endl;
 
-    char *str0="x  +  x( y*(z+x * h)+k)#";
+    const char *str0="((x  +  y+(x*y)+x/z/(x-y*x)#";
     char str[128] = {0};
     cout<<"示例语句："<<str<<endl;
     while(1)
@@ -54,9 +56,13 @@ int main() {
         else
             wordscan(str);
     }
+#else
+    return LR1Parse_test();
+#endif
 }
 
 int wordscan(const char *str)
+//*******************分析的开始***********************
 {
 	int silent = 1;
 	LexScan *ls=new LexScan(silent);
@@ -82,10 +88,16 @@ int wordscan(const char *str)
     Parsing *pars = new Parsing(0);
 
     //语法分析
-    return parsingfunc(pars, tkcur, w, str);//parsing返回状态值0或非0，以后可能用来返回记号给词法分析器
+    LR1Parse lr(0);
+    WordStream *ws = new WordStream(w, tkcur);// tkcur 就是w的长度
+
+    //************************实验3：LR(1)分析器************************
+    return lr.parse(ws); // ws 是词法记号流，保存了从词法分析器中分析出来的词法记号
+//    return parsingfunc(pars, tkcur, w, str);//parsing返回状态值0或非0，以后可能用来返回记号给词法分析器
 }
 
 int lexfunc(LexScan *ls, int silent, const char *str, Word *w)
+//************************实验1词法分析************************
 {
 
 	ls->SetCode(str, len(str));
@@ -123,7 +135,10 @@ int lexfunc(LexScan *ls, int silent, const char *str, Word *w)
 	return tkcur;
 }
 
+
+
 int parsingfunc(Parsing *pars, int tkcur, Word *w, const char *str)
+//--------------------实验3语法分析-------------------
 {
     // 语法分析，将词法分析的结果通过Word *w传递给语法分析器parsing
     cout<<"算术语法分析（要求以#结束）开始..."<<endl;

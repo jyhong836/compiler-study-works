@@ -1,0 +1,13 @@
+status Number:30
++	13	e2	s6	r4	r7	e2	r9	e2	e2	e2	e2	s20	r4	r7	e2	r9	r2	r3	r5	r6	r8	e2	e2	e2	e2	s20	r2	r3	r5	r6	r8
+-	14	e2	s7	r4	r7	e2	r9	e2	e2	e2	e2	s21	r4	r7	e2	r9	r2	r3	r5	r6	r8	e2	e2	e2	e2	s21	r2	r3	r5	r6	r8
+*	15	e2	e4	s8	r7	e2	r9	e2	e2	e2	e2	e4	s22	r7	e2	r9	s8	s8	r5	r6	r8	e2	e2	e2	e2	e5	s22	s22	r5	r6	r8
+/	16	e2	e4	s9	r7	e2	r9	e2	e2	e2	e2	e4	s23	r7	e2	r9	s9	s9	r5	r6	r8	e2	e2	e2	e2	e5	s23	s23	r5	r6	r8
+(	27	s4	e5	e5	e5	s13	e5	s4	s4	s4	s4	e5	e5	e5	s13	e5	e5	e5	e5	e5	e5	s13	s13	s13	s13	e5	e5	e5	e5	e5	e5
+)	28	e3	e5	e5	e5	e3	e5	e2	e2	e2	e2	s19	r4	r7	e3	r9	e5	e5	e5	e5	e5	e2	e2	e2	e2	s29	r2	r3	r5	r6	r8
+i	10	s5	e5	e5	e5	s14	e5	s5	s5	s5	s5	e5	e5	e5	s14	e5	e5	e5	e5	e5	e5	s14	s14	s14	s14	e5	e5	e5	e5	e5	e5
+#	0	e1	a	r4	r7	a	r9	a	a	a	a	e5	e5	e5	e5	e5	r2	r3	r5	r6	r8	a	a	a	a	e5	e5	e5	e5	e5	e5
+E	-1	1	0	0	0	10	0	0	0	0	0	0	0	0	24	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T	-2	2	0	0	0	11	0	15	16	0	0	0	0	0	11	0	0	0	0	0	0	25	26	0	0	0	0	0	0	0	0
+F	-3	3	0	0	0	12	0	3	3	17	18	0	0	0	12	0	0	0	0	0	0	12	12	27	28	0	0	0	0	0	0
+

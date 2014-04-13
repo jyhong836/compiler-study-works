@@ -15,6 +15,9 @@ struct Word{
 	int num; // 数值
 	int strCur; // 在句子字符串中的位置
 };
+
+#include "WordStream.h"
+
 #define ENDTOKEN 0
 // 结束字符
 
